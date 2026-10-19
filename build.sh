@@ -27,6 +27,10 @@ echo "Source sync completed"
 # DEVICE TREE + VENDOR
 # =========================
 
+# Clear existing device and vendor folders to prevent path conflicts
+rm -rf device/acer/AcerOne8T482L
+rm -rf vendor/acer/AcerOne8T482L
+
 git clone https://github.com/codebht/Android_device_t482l.git \
   -b main device/acer/AcerOne8T482L
 
@@ -34,6 +38,12 @@ git clone https://github.com/codebht/android_vendor_T482L.git \
   -b main vendor/acer/AcerOne8T482L
 
 echo "Device and vendor trees cloned"
+
+# Fix fstab duplication bugs dynamically before compilation starts
+sed -i '/fstab.mt8766/d' device/acer/AcerOne8T482L/device.mk
+sed -i '/fstab.mt8766/,/include $(BUILD_PREBUILT)/d' device/acer/AcerOne8T482L/rootdir/Android.mk
+
+echo "Applied source tree configuration patches"
 
 # =========================
 # BUILD ENVIRONMENT
