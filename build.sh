@@ -39,12 +39,6 @@ git clone https://github.com/codebht/android_vendor_T482L.git \
 
 echo "Device and vendor trees cloned"
 
-# Fix fstab duplication bugs dynamically before compilation starts
-sed -i '/fstab.mt8766/d' device/acer/AcerOne8T482L/device.mk
-sed -i '/fstab.mt8766/,/include $(BUILD_PREBUILT)/d' device/acer/AcerOne8T482L/rootdir/Android.mk
-
-echo "Applied source tree configuration patches"
-
 # =========================
 # BUILD ENVIRONMENT
 # =========================
