@@ -39,6 +39,11 @@ git clone https://github.com/codebht/android_vendor_T482L.git \
 
 echo "Device and vendor trees cloned"
 
+# Strip out ALL remaining illegal VINTF manifest file copies automatically before building
+sed -i '/\/vintf\/manifest_/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
+
+echo "VINTF copy patches applied successfully"
+
 # =========================
 # BUILD ENVIRONMENT
 # =========================
