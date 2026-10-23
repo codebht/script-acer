@@ -42,7 +42,10 @@ echo "Device and vendor trees cloned"
 # Strip out ALL remaining illegal VINTF manifest file copies automatically before building
 sed -i '/\/vintf\/manifest_/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
 
-echo "VINTF copy patches applied successfully"
+# 🟢 ADD THIS SECOND LINE RIGHT HERE to clear the core framework manifests:
+sed -i '/\/etc\/vintf\//d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
+
+echo "All VINTF copy patches applied successfully"
 
 # =========================
 # BUILD ENVIRONMENT
