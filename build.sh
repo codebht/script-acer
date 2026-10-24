@@ -48,6 +48,9 @@ sed -i '/\/bin\/toolbox/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
 sed -i '/\/bin\/grep/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
 sed -i '/\/bin\/sh/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
 
+# 🟢 ADD THIS LINE HERE to clear the vendor binder service tool override:
+sed -i '/\/bin\/vndservice/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
+
 echo "All VINTF and system binary copy patches applied"
 
 # =========================
