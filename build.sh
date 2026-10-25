@@ -53,6 +53,8 @@ sed -i '/\/bin\/vndservice/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
 
 sed -i '/\/bin\/toybox_vendor/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
 
+sed -i '/\/bin\/awk/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
+
 echo "All VINTF and system binary copy patches applied"
 
 # =========================
