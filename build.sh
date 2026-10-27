@@ -39,26 +39,46 @@ git clone https://github.com/codebht/android_vendor_T482L.git \
 
 echo "Device and vendor trees cloned"
 
-# Clear any remaining illegal VINTF manifest text blocks
-sed -i '/\/vintf\/manifest_/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
-sed -i '/\/etc\/vintf\//d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
+#
+-------------------------------------------------------------
+# 🚀 GLOBAL CURE: NUKE ALL POTENTIAL CONFLICTING BLOBS AT ONCE
+# -------------------------------------------------------------
+VENDOR_BLOBS="vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk"
 
-# 🟢 ADD THESE LINES HERE to clear native system binary copy collisions:
-sed -i '/\/bin\/toolbox/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
-sed -i '/\/bin\/grep/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
-sed -i '/\/bin\/sh/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
+# 1. Nuke all forbidden VINTF manifests/matrices copies
+sed -i '/\/vintf\/manifest_/d' "$VENDOR_BLOBS"
+sed -i '/\/etc\/vintf\//d' "$VENDOR_BLOBS"
 
-# 🟢 ADD THIS LINE HERE to clear the vendor binder service tool override:
-sed -i '/\/bin\/vndservice/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
+# 2. Nuke standard shell tools that LineageOS builds from source
+sed -i '/\/bin\/toolbox/d' "$VENDOR_BLOBS"
+sed -i '/\/bin\/grep/d' "$VENDOR_BLOBS"
+sed -i '/\/bin\/sh/d' "$VENDOR_BLOBS"
+sed -i '/\/bin\/awk/d' "$VENDOR_BLOBS"
+sed -i '/\/bin\/toybox_vendor/d' "$VENDOR_BLOBS"
 
-sed -i '/\/bin\/toybox_vendor/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
+# 3. Nuke open-source HIDL hardware services that Android 13 overrides
+sed -i '/android.hardware.drm/d' "$VENDOR_BLOBS"
+sed -i '/android.hardware.configstore/d' "$VENDOR_BLOBS"
+sed -i '/android.hardware.gatekeeper/d' "$VENDOR_BLOBS"
+sed -i '/android.hardware.health/d' "$VENDOR_BLOBS"
+sed -i '/android.hardware.light/d' "$VENDOR_BLOBS"
+sed -i '/android.hardware.vibrator/d' "$VENDOR_BLOBS"
+sed -i '/android.hardware.wifi/d' "$VENDOR_BLOBS"
+sed -i '/android.hardware.bluetooth/d' "$VENDOR_BLOBS"
+sed -i '/android.hardware.sensors/d' "$VENDOR_BLOBS"
+sed -i '/android.hardware.media.omx/d' "$VENDOR_BLOBS"
+sed -i '/android.hardware.memtrack/d' "$VENDOR_BLOBS"
+sed -i '/android.hardware.thermal/d' "$VENDOR_BLOBS"
+sed -i '/android.hardware.graphics.composer/d' "$VENDOR_BLOBS"
+sed -i '/android.hardware.graphics.allocator/d' "$VENDOR_BLOBS"
+sed -i '/android.hardware.cas/d' "$VENDOR_BLOBS"
 
-sed -i '/\/bin\/awk/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
+# 4. Nuke standard MediaTek/AOSP service binary duplicates
+sed -i '/\/bin\/vndservice/d' "$VENDOR_BLOBS"
+sed -i '/\/bin\/wpa_supplicant/d' "$VENDOR_BLOBS"
+sed -i '/\/bin\/hostapd/d' "$VENDOR_BLOBS"
 
-sed -i '/drm@1.2-service.clearkey/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
-sed -i '/android.hardware.drm@1.0-service/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
-
-echo "All VINTF and system binary copy patches applied"
+echo "Global cleaning filter applied. No more duplicate errors can happen."
 
 # =========================
 # BUILD ENVIRONMENT
