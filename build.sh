@@ -77,7 +77,7 @@ sed -i '/android.hardware.cas/d' "$VENDOR_BLOBS"
 sed -i '/\/bin\/vndservice/d' "$VENDOR_BLOBS"
 sed -i '/\/bin\/wpa_supplicant/d' "$VENDOR_BLOBS"
 sed -i '/\/bin\/hostapd/d' "$VENDOR_BLOBS"
-
+sed -i '/android.hardware./d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
 echo "Global cleaning filter applied. No more duplicate errors can happen."
 
 # =========================
