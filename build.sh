@@ -86,6 +86,7 @@ sed -i '/\/bin\/logwrapper/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
 sed -i '/\/bin\/gzip/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
 sed -i '/\/bin\/run-as/d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
 sed -i '/fstab./d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
+sed -i '/\/etc\/selinux\//d' vendor/acer/AcerOne8T482L/T482L-vendor-blobs.mk
 echo "Global cleaning filter applied. No more duplicate errors can happen."
 
 # =========================
